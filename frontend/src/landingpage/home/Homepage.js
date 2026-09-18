@@ -1,28 +1,33 @@
 import React from 'react';
 import Hero from './Hero';
-import Achivements from './Achivements';
 import Notice from './Notice';
-import Ourpgm from './Ourpgm';
 import Welcome from './Welcome';
+import Ourpgm from './Ourpgm';
+import ScholarshipCalculator from '../../components/ScholarshipCalculator';
+import Achivements from './Achivements';
 import Ourstd from './Ourstd';
 import Life from './Life';
-import Navbar from '../../Navbar';
-import Footar from '../../Footar';
 
 function Homepage() {
-    return (
-        <>
-            <Navbar />
-            <Hero />
-            <Achivements />
-            <Notice />
-            <Ourpgm />
-            <Welcome />
-            <Ourstd />
-            <Life />
-            <Footar />
-        </>
-    );
+  return (
+    <div>
+      <Hero />
+      <Notice />
+      <Welcome />
+      <Ourpgm />
+
+      {/* Interactive Scholarship & Eligibility Calculator Section */}
+      <section className="section" style={{ background: '#f8fafc' }}>
+        <div className="container">
+          <ScholarshipCalculator />
+        </div>
+      </section>
+
+      <Achivements />
+      <Ourstd />
+      <Life />
+    </div>
+  );
 }
 
 export default Homepage;
