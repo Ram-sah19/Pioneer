@@ -1,4 +1,4 @@
-/* Top Announcement Bar */
+/* Top Announcement Bar - scrolls away naturally (not sticky) */
 .top-bar {
   background: var(--primary-dark);
   color: #cbd5e1;
@@ -47,7 +47,7 @@
   text-transform: uppercase;
 }
 
-/* Main Navbar */
+/* Main Navbar - sticky: pins to top once the announcement bar scrolls off */
 .navbar {
   background: #ffffff;
   box-shadow: var(--shadow);
@@ -55,6 +55,25 @@
   top: 0;
   z-index: 999;
   transition: var(--transition);
+  isolation: isolate;
+}
+
+.navbar::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0;
+  height: 2px;
+  background: #06b6d4;
+  opacity: 0;
+  transform: scaleX(0.85);
+  transform-origin: center;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.navbar:hover::after,
+.navbar:focus-within::after {
+  opacity: 1;
+  transform: scaleX(1);
 }
 
 .navbar > .navbar-container {
@@ -84,6 +103,13 @@
   margin-right: 0;
   order: 0;
   text-align: left;
+  transition: transform 0.25s ease;
+}
+
+.brand-container:hover,
+.brand-container:focus-visible {
+  transform: translateY(-1px);
+  outline: none;
 }
 
 .brand-logo-img {
@@ -94,6 +120,13 @@
   border: 2px solid var(--primary);
   box-shadow: var(--shadow-sm);
   background: #ffffff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.brand-container:hover .brand-logo-img,
+.brand-container:focus-visible .brand-logo-img {
+  transform: rotate(-4deg) scale(1.04);
+  box-shadow: 0 6px 16px rgba(15, 43, 92, 0.18);
 }
 
 .brand-text {
@@ -107,6 +140,12 @@
   color: var(--primary);
   line-height: 1.15;
   letter-spacing: -0.02em;
+  transition: color 0.25s ease;
+}
+
+.brand-container:hover .brand-title,
+.brand-container:focus-visible .brand-title {
+  color: var(--primary-accent);
 }
 
 .brand-subtitle {
@@ -142,12 +181,27 @@
   position: relative;
   cursor: pointer;
   transition: var(--transition);
+  overflow: hidden;
 }
 
 .nav-link:hover,
 .nav-link.active {
   color: var(--primary);
   background: var(--primary-light);
+}
+
+.nav-link::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, rgba(37, 99, 235, 0.08), transparent);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.nav-link:hover::before,
+.nav-link.active::before {
+  opacity: 1;
 }
 
 .nav-link.active {
@@ -163,6 +217,14 @@
   height: 3px;
   background: var(--primary-accent);
   border-radius: 2px;
+  transform: scaleX(0.35);
+  transform-origin: center;
+  transition: transform 0.25s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  transform: scaleX(1);
 }
 
 .mobile-toggle {
@@ -170,10 +232,66 @@
   padding: 8px;
   color: var(--primary);
   border-radius: var(--radius-sm);
+  transition: transform 0.25s ease, background-color 0.25s ease;
 }
 
 .mobile-toggle:hover,
 .mobile-toggle:focus-visible {
   background: var(--primary-light);
   outline: none;
+  transform: rotate(4deg);
+}
+
+.navbar .btn-secondary {
+  box-shadow: 0 4px 12px rgba(211, 47, 47, 0.18);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+}
+
+.navbar .btn-secondary:hover,
+.navbar .btn-secondary:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 7px 18px rgba(211, 47, 47, 0.28);
+  outline: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .navbar *,
+  .navbar::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar .nav-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    display: flex;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition: max-height 0.3s ease, opacity 0.25s ease, transform 0.25s ease, visibility 0.3s ease;
+  }
+
+  .navbar .nav-menu.open {
+    max-height: 80vh;
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .navbar .nav-menu .nav-link,
+  .navbar .nav-menu .btn {
+    transform: translateY(-4px);
+    transition: transform 0.25s ease, color 0.25s ease, background-color 0.25s ease;
+  }
+
+  .navbar .nav-menu.open .nav-link,
+  .navbar .nav-menu.open .btn {
+    transform: translateY(0);
+  }
 }

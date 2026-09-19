@@ -25,8 +25,8 @@ function Navbar() {
   };
 
   return (
-    <header>
-      {/* Top Announcement Bar */}
+    <>
+      {/* Top Announcement Bar - scrolls away naturally */}
       <div className="top-bar">
         <div className="container">
           <div className="top-bar-inner">
@@ -137,7 +137,7 @@ function Navbar() {
           </div>
         </div>
       </nav>
-    </header>
+    </>
   );
 }
 

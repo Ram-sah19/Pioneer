@@ -245,6 +245,7 @@ button {
 .hero-title .highlight {
   color: #38bdf8;
   background: linear-gradient(120deg, #38bdf8, #a5f3fc);
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }

@@ -4,9 +4,12 @@ import Icon from '../Icons';
 
 export const ScholarshipCalculator = () => {
   const { openApplyModal } = useNavigation();
-  const [gpa, setGpa] = useState(3.65);
+  const [gpa, setGpa] = useState('3.65');
   const [program, setProgram] = useState('+2 Science');
   const [quota, setQuota] = useState('merit');
+
+  const gpaNum = parseFloat(gpa);
+  const safeGpa = isNaN(gpaNum) ? 0 : gpaNum;
 
   // Compute scholarship result
   const calculateScholarship = () => {
@@ -14,19 +17,19 @@ export const ScholarshipCalculator = () => {
     let title = 'Standard Admission';
     let badgeColor = 'badge-blue';
 
-    if (gpa >= 3.8) {
+    if (safeGpa >= 3.8) {
       waiver = 100;
       title = '100% Full Tuition Waiver (Pioneers Golden Merit Award)';
       badgeColor = 'badge-red';
-    } else if (gpa >= 3.6) {
+    } else if (safeGpa >= 3.6) {
       waiver = 75;
       title = '75% Tuition Scholarship (District Academic Honor)';
       badgeColor = 'badge-amber';
-    } else if (gpa >= 3.2) {
+    } else if (safeGpa >= 3.2) {
       waiver = 50;
       title = '50% Tuition Scholarship (Special Academic Merit)';
       badgeColor = 'badge-green';
-    } else if (gpa >= 2.8) {
+    } else if (safeGpa >= 2.8) {
       waiver = 30;
       title = '30% Early Bird & Merit Incentive';
       badgeColor = 'badge-blue';
@@ -104,23 +107,36 @@ export const ScholarshipCalculator = () => {
                   borderRadius: '6px'
                 }}
               >
-                {Number(gpa).toFixed(2)} GPA
+                {isNaN(gpaNum) ? '0.00' : gpaNum.toFixed(2)} GPA
               </span>
             </div>
             <input
-              type="range"
+              type="number"
+              className="form-control"
               min="2.00"
               max="4.00"
               step="0.05"
+              inputMode="decimal"
               value={gpa}
-              onChange={(e) => setGpa(parseFloat(e.target.value))}
-              style={{ width: '100%', accentColor: 'var(--primary-accent)', cursor: 'pointer', height: '8px' }}
+              onChange={(e) => {
+                const raw = e.target.value;
+                if (raw === '') { setGpa(''); return; }
+                const n = parseFloat(raw);
+                if (!isNaN(n)) {
+                  if (n < 2) { setGpa('2'); return; }
+                  if (n > 4) { setGpa('4'); return; }
+                }
+                setGpa(raw);
+              }}
+              onBlur={() => {
+                const n = parseFloat(gpa);
+                setGpa(isNaN(n) ? '2.00' : n.toFixed(2));
+              }}
+              style={{ fontSize: '1.05rem', fontWeight: 700 }}
             />
             <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.78rem', color: 'var(--muted)', marginTop: '4px' }}>
-              <span>2.00 (Pass)</span>
-              <span>3.00 (B+)</span>
-              <span>3.60 (A+)</span>
-              <span>4.00 (Top)</span>
+              <span>Min: 2.00 (Pass)</span>
+              <span>Max: 4.00 (Top)</span>
             </div>
           </div>
 
@@ -161,7 +177,7 @@ export const ScholarshipCalculator = () => {
               type="button"
               className="tab-btn"
               style={{ padding: '4px 12px', fontSize: '0.78rem' }}
-              onClick={() => setGpa(3.9)}
+              onClick={() => setGpa('3.90')}
             >
               Preset: 3.90 GPA (Topper)
             </button>
@@ -169,7 +185,7 @@ export const ScholarshipCalculator = () => {
               type="button"
               className="tab-btn"
               style={{ padding: '4px 12px', fontSize: '0.78rem' }}
-              onClick={() => setGpa(3.65)}
+              onClick={() => setGpa('3.65')}
             >
               Preset: 3.65 GPA (A+)
             </button>
@@ -177,7 +193,7 @@ export const ScholarshipCalculator = () => {
               type="button"
               className="tab-btn"
               style={{ padding: '4px 12px', fontSize: '0.78rem' }}
-              onClick={() => setGpa(3.25)}
+              onClick={() => setGpa('3.25')}
             >
               Preset: 3.25 GPA (A)
             </button>

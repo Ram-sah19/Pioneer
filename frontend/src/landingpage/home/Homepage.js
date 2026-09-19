@@ -2,6 +2,7 @@ import React from 'react';
 import Hero from './Hero';
 import Notice from './Notice';
 import Welcome from './Welcome';
+import PrincipalMessage from './PrincipalMessage';
 import Ourpgm from './Ourpgm';
 import ScholarshipCalculator from '../../components/ScholarshipCalculator';
 import Achivements from './Achivements';
@@ -14,6 +15,7 @@ function Homepage() {
       <Hero />
       <Notice />
       <Welcome />
+      <PrincipalMessage />
       <Ourpgm />
 
       {/* Interactive Scholarship & Eligibility Calculator Section */}
