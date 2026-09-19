@@ -5,6 +5,7 @@ import Icon from './Icons';
 function Navbar() {
   const { currentPage, navigateTo, openApplyModal } = useNavigation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const mobileMenuId = 'primary-navigation';
 
   const navItems = [
     { id: 'home', label: 'Home' },
@@ -66,11 +67,15 @@ function Navbar() {
       </div>
 
       {/* Main Navbar */}
-      <nav className="navbar">
-        <div className="container">
+      <nav className="navbar" aria-label="Primary navigation">
+        <div className="container navbar-container">
           <div className="navbar-inner">
             {/* Brand Logo & Name */}
-            <div className="brand-container" onClick={() => handleNavClick('home')}>
+            <button
+              className="brand-container"
+              onClick={() => handleNavClick('home')}
+              aria-label="Go to Pioneers' Academy home page"
+            >
               <img
                 src="/college-logo.png"
                 alt="Pioneers Higher Education Academy Logo"
@@ -78,6 +83,9 @@ function Navbar() {
                 onError={(e) => {
                   e.target.onerror = null;
                   e.target.src = '/college-banner.png';
+                  e.target.style.width = '60px';
+                  e.target.style.height = '60px';
+                  e.target.style.objectFit = 'cover';
                 }}
               />
               <div className="brand-text">
@@ -85,10 +93,13 @@ function Navbar() {
                 <span className="brand-subtitle">HIGHER EDUCATION ACADEMY • WALING, SYANGJA</span>
                 <span className="brand-motto">"We Receive to Give" • Estd. 2044 B.S.</span>
               </div>
-            </div>
+            </button>
 
             {/* Desktop Navigation Links */}
-            <ul className={`nav-menu ${isMobileMenuOpen ? 'open' : ''}`}>
+            <ul
+              id={mobileMenuId}
+              className={`nav-menu ${isMobileMenuOpen ? 'open' : ''}`}
+            >
               {navItems.map((item) => (
                 <li key={item.id}>
                   <button
@@ -117,7 +128,9 @@ function Navbar() {
             <button
               className="mobile-toggle"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              aria-label="Toggle Navigation Menu"
+              aria-expanded={isMobileMenuOpen}
+              aria-controls={mobileMenuId}
+              aria-label={isMobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
             >
               <Icon name={isMobileMenuOpen ? 'x' : 'menu'} size={26} />
             </button>

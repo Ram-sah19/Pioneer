@@ -238,11 +238,19 @@ button {
   transition: var(--transition);
 }
 
+.navbar-container {
+  width: 100%;
+  max-width: none;
+  padding-left: 32px;
+  padding-right: 32px;
+}
+
 .navbar-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 80px;
+  min-height: 80px;
+  gap: 24px;
 }
 
 .brand-container {
@@ -250,6 +258,9 @@ button {
   align-items: center;
   gap: 14px;
   cursor: pointer;
+  flex-shrink: 0;
+  margin-right: auto;
+  text-align: left;
 }
 
 .brand-logo-img {
@@ -292,8 +303,10 @@ button {
 .nav-menu {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   gap: 6px;
   list-style: none;
+  margin-left: auto;
 }
 
 .nav-link {
@@ -333,6 +346,13 @@ button {
   display: none;
   padding: 8px;
   color: var(--primary);
+  border-radius: var(--radius-sm);
+}
+
+.mobile-toggle:hover,
+.mobile-toggle:focus-visible {
+  background: var(--primary-light);
+  outline: none;
 }
 
 /* Hero Section */
@@ -863,15 +883,18 @@ textarea.form-control {
   margin-bottom: 10px;
 }
 
-.footer-links a {
+.footer-links a,
+.footer-links button {
   color: #cbd5e1;
   font-size: 0.9rem;
   display: inline-flex;
   align-items: center;
   gap: 6px;
+  text-align: left;
 }
 
-.footer-links a:hover {
+.footer-links a:hover,
+.footer-links button:hover {
   color: #ffffff;
   transform: translateX(4px);
 }
@@ -924,6 +947,25 @@ textarea.form-control {
   }
 }
 
+@media (max-width: 1100px) {
+  .navbar-inner {
+    gap: 12px;
+  }
+  .brand-title {
+    font-size: 1.1rem;
+  }
+  .brand-subtitle {
+    font-size: 0.68rem;
+  }
+  .brand-motto {
+    font-size: 0.68rem;
+  }
+  .nav-link {
+    padding: 8px 9px;
+    font-size: 0.84rem;
+  }
+}
+
 @media (max-width: 768px) {
   .hero-title {
     font-size: 2.2rem;
@@ -938,13 +980,31 @@ textarea.form-control {
     display: flex;
     flex-direction: column;
     position: absolute;
-    top: 80px;
+    top: 100%;
     left: 0;
     right: 0;
     background: #ffffff;
     padding: 20px;
     box-shadow: var(--shadow-lg);
     border-bottom: 2px solid var(--primary);
+    align-items: stretch;
+    gap: 4px;
+    margin-left: 0;
+  }
+  .brand-container {
+    margin-right: 0;
+  }
+  .navbar-container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .nav-menu li {
+    width: 100%;
+  }
+  .nav-link,
+  .nav-menu .btn {
+    width: 100%;
+    justify-content: center;
   }
   .mobile-toggle {
     display: block;
