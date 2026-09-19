@@ -47,7 +47,7 @@ function Achivements() {
 
         <div className="grid-4">
           {achievements.map((item, idx) => (
-            <div key={idx} className="card" style={{ borderTop: '4px solid var(--primary-accent)' }}>
+            <div key={idx} className="card">
               <div className="card-body" style={{ textAlign: 'center' }}>
                 <div
                   className="card-icon-box"

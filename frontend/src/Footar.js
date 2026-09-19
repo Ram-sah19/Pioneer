@@ -67,7 +67,7 @@ function Footer() {
               <li><button onClick={() => navigateTo('campus')}>Campus Life</button></li>
               <li><button onClick={() => navigateTo('facilities')}>Facilities & Labs</button></li>
               <li><button onClick={() => navigateTo('halloffame')}>Hall of Fame</button></li>
-              <li><button onClick={() => navigateTo('newsevent')}>News & Notices</button></li>
+              <li><button onClick={() => navigateTo('clubs')}>Clubs & Societies</button></li>
               <li><button onClick={() => navigateTo('contact')}>Contact Desk</button></li>
             </ul>
           </div>

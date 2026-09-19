@@ -3,7 +3,7 @@ import { useNavigation } from '../../navigation';
 import Icon from '../../Icons';
 
 function Notice() {
-  const { navigateTo, openNoticeModal, openApplyModal } = useNavigation();
+  const { openNoticeModal, openApplyModal } = useNavigation();
 
   const recentNotices = [
     {
@@ -101,12 +101,6 @@ function Notice() {
               </div>
             </div>
           ))}
-        </div>
-
-        <div style={{ textAlign: 'center', marginTop: '35px' }}>
-          <button className="btn btn-outline-primary" onClick={() => navigateTo('newsevent')}>
-            <Icon name="fileText" size={16} /> View All Notices & Events Archive
-          </button>
         </div>
       </div>
     </section>

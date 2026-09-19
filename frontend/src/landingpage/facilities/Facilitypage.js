@@ -94,42 +94,26 @@ function Facilitypage() {
             </p>
           </div>
 
-          <div className="grid-2" style={{ gap: '30px' }}>
+          <div className="facility-list">
             {facilities.map((fac, idx) => (
-              <div key={idx} className="card" style={{ borderTop: '4px solid var(--primary)' }}>
-                <div className="card-body">
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '14px' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
-                      <div className="card-icon-box" style={{ margin: 0 }}>
-                        <Icon name={fac.icon} size={24} />
-                      </div>
-                      <div>
-                        <h3 className="card-title" style={{ margin: 0, fontSize: '1.25rem' }}>{fac.title}</h3>
-                        <span className="badge badge-blue" style={{ marginTop: '4px' }}>{fac.badge}</span>
-                      </div>
-                    </div>
+              <div key={idx} className="facility-row">
+                <div className="facility-icon">
+                  <Icon name={fac.icon} size={30} />
+                </div>
+                <div className="facility-main">
+                  <div className="facility-head">
+                    <h3 className="facility-title">{fac.title}</h3>
+                    <span className="badge badge-blue">{fac.badge}</span>
                   </div>
-
-                  <p className="card-text" style={{ fontSize: '0.94rem', marginBottom: '16px' }}>
-                    {fac.desc}
-                  </p>
-
-                  <div style={{ background: 'var(--light-bg)', padding: '14px 18px', borderRadius: 'var(--radius-sm)', marginBottom: '16px' }}>
-                    <ul style={{ paddingLeft: '18px', fontSize: '0.86rem', color: 'var(--slate)', lineHeight: '1.6' }}>
-                      {fac.points.map((pt, pIdx) => (
-                        <li key={pIdx}>{pt}</li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <div className="card-footer" style={{ marginTop: 'auto' }}>
-                    <button className="btn btn-outline-primary" onClick={openApplyModal}>
-                      <Icon name="graduationCap" size={15} /> Inquire About Facilities
-                    </button>
-                    <button className="btn btn-primary" onClick={() => navigateTo('contact')}>
-                      <Icon name="mapPin" size={15} /> Book a Campus Visit
-                    </button>
-                  </div>
+                  <p className="facility-desc">{fac.desc}</p>
+                  <ul className="facility-points">
+                    {fac.points.map((pt, pIdx) => (
+                      <li key={pIdx}>
+                        <Icon name="checkCircle" size={16} color="#16a34a" />
+                        <span>{pt}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </div>
             ))}

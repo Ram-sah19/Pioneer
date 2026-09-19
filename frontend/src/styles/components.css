@@ -281,7 +281,6 @@ button {
   border-radius: var(--radius);
   box-shadow: var(--shadow-md);
   text-align: center;
-  border-bottom: 4px solid var(--primary-accent);
   transition: var(--transition);
 }
 

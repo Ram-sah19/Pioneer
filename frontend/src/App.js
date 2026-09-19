@@ -14,7 +14,7 @@ import Admisssionpage from './landingpage/admission/Admisssionpage';
 import Campuspage from './landingpage/campus/Campuspage';
 import Facilitypage from './landingpage/facilities/Facilitypage';
 import Hallpage from './landingpage/hallofframe/Hallpage';
-import Newspage from './landingpage/newsevent/Newspage';
+import Clubspage from './landingpage/clubs/Clubspage';
 import Contactpage from './landingpage/contact/Contactpage';
 
 function AppContent() {
@@ -36,8 +36,8 @@ function AppContent() {
         return <Facilitypage />;
       case 'halloffame':
         return <Hallpage />;
-      case 'newsevent':
-        return <Newspage />;
+      case 'clubs':
+        return <Clubspage />;
       case 'contact':
         return <Contactpage />;
       default:

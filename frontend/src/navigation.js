@@ -21,7 +21,7 @@ export const getPageFromHash = () => {
     'campus',
     'facilities',
     'halloffame',
-    'newsevent',
+    'clubs',
     'contact'
   ];
   return validPages.includes(hash) ? hash : 'home';

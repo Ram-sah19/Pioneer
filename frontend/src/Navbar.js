@@ -3,7 +3,7 @@ import { useNavigation } from './navigation';
 import Icon from './Icons';
 
 function Navbar() {
-  const { currentPage, navigateTo, openApplyModal } = useNavigation();
+  const { currentPage, navigateTo } = useNavigation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const mobileMenuId = 'primary-navigation';
 
@@ -15,13 +15,16 @@ function Navbar() {
     { id: 'campus', label: 'Campus' },
     { id: 'facilities', label: 'Facilities' },
     { id: 'halloffame', label: 'Hall of Fame' },
-    { id: 'newsevent', label: 'News & Events' },
+    { id: 'clubs', label: 'Clubs & Societies' },
     { id: 'contact', label: 'Contact' },
   ];
 
-  const handleNavClick = (pageId) => {
+  const handleNavClick = (pageId, event) => {
     navigateTo(pageId);
     setIsMobileMenuOpen(false);
+    if (event && typeof event.currentTarget?.blur === 'function') {
+      event.currentTarget.blur();
+    }
   };
 
   return (
@@ -73,7 +76,7 @@ function Navbar() {
             {/* Brand Logo & Name */}
             <button
               className="brand-container"
-              onClick={() => handleNavClick('home')}
+              onClick={(event) => handleNavClick('home', event)}
               aria-label="Go to Pioneers' Academy home page"
             >
               <img
@@ -104,24 +107,12 @@ function Navbar() {
                 <li key={item.id}>
                   <button
                     className={`nav-link ${currentPage === item.id ? 'active' : ''}`}
-                    onClick={() => handleNavClick(item.id)}
+                    onClick={(event) => handleNavClick(item.id, event)}
                   >
                     {item.label}
                   </button>
                 </li>
               ))}
-              <li style={{ marginLeft: '10px' }}>
-                <button
-                  className="btn btn-secondary"
-                  style={{ padding: '8px 16px', fontSize: '0.86rem' }}
-                  onClick={() => {
-                    openApplyModal();
-                    setIsMobileMenuOpen(false);
-                  }}
-                >
-                  <Icon name="graduationCap" size={15} /> Apply Now
-                </button>
-              </li>
             </ul>
 
             {/* Mobile Menu Toggle Button */}

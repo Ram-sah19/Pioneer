@@ -1,10 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useNavigation } from '../../navigation';
 import Icon from '../../Icons';
 
 function Academypage() {
   const { navigateTo, openApplyModal } = useNavigation();
   const [activeTab, setActiveTab] = useState('all');
+  const layoutRef = useRef(null);
+
+  const selectCategory = (id) => {
+    setActiveTab(id);
+    // Result length changes, which can strand the scroll position; realign to the list top.
+    setTimeout(() => {
+      layoutRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 0);
+  };
 
   const programs = [
     {
@@ -196,6 +205,17 @@ function Academypage() {
     }
   ];
 
+  const categories = [
+    { id: 'all', label: 'All Programs' },
+    { id: 'plus2', label: '+2 Higher Secondary (NEB)' },
+    { id: 'ctevt', label: 'CTEVT Technical Diplomas' },
+    { id: 'degree', label: 'Bachelor Degree (BBS - TU)' },
+    { id: 'school', label: 'School Level (Grade 1-10)' }
+  ];
+
+  const countFor = (id) =>
+    id === 'all' ? programs.length : programs.filter((p) => p.category === id).length;
+
   const filteredPrograms =
     activeTab === 'all'
       ? programs
@@ -218,112 +238,103 @@ function Academypage() {
         </div>
       </div>
 
-      {/* Program Tabs */}
+      {/* Program Categories Sidebar + Cards */}
       <section className="section">
         <div className="container">
-          <div className="tabs-container">
-            <button
-              className={`tab-btn ${activeTab === 'all' ? 'active' : ''}`}
-              onClick={() => setActiveTab('all')}
-            >
-              All Programs ({programs.length})
-            </button>
-            <button
-              className={`tab-btn ${activeTab === 'plus2' ? 'active' : ''}`}
-              onClick={() => setActiveTab('plus2')}
-            >
-              +2 Higher Secondary (NEB)
-            </button>
-            <button
-              className={`tab-btn ${activeTab === 'ctevt' ? 'active' : ''}`}
-              onClick={() => setActiveTab('ctevt')}
-            >
-              CTEVT Technical Diplomas (HA & Civil)
-            </button>
-            <button
-              className={`tab-btn ${activeTab === 'degree' ? 'active' : ''}`}
-              onClick={() => setActiveTab('degree')}
-            >
-              Bachelor Degree (BBS - TU)
-            </button>
-            <button
-              className={`tab-btn ${activeTab === 'school' ? 'active' : ''}`}
-              onClick={() => setActiveTab('school')}
-            >
-              School Level (Grade 1-10)
-            </button>
-          </div>
-
-          {/* Program Cards Grid */}
-          <div className="grid-2" style={{ gap: '30px' }}>
-            {filteredPrograms.map((p) => (
-              <div key={p.id} className="card" style={{ borderLeft: '5px solid var(--primary-accent)' }}>
-                <div className="card-body">
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '14px' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                      <div className="card-icon-box" style={{ margin: 0 }}>
-                        <Icon name={p.icon} size={24} />
-                      </div>
-                      <div>
-                        <h3 className="card-title" style={{ margin: 0, fontSize: '1.25rem' }}>{p.title}</h3>
-                        <span style={{ fontSize: '0.82rem', color: 'var(--muted)' }}>
-                          {p.duration} • <span style={{ color: 'var(--primary-accent)', fontWeight: 600 }}>{p.board}</span>
-                        </span>
-                      </div>
-                    </div>
-                    <span className={`badge ${p.badgeClass}`}>{p.board.split(' ')[0]}</span>
-                  </div>
-
-                  <p className="card-text" style={{ fontSize: '0.94rem', marginBottom: '16px' }}>
-                    {p.overview}
-                  </p>
-
-                  <div
-                    style={{
-                      background: 'var(--light-bg)',
-                      padding: '12px 16px',
-                      borderRadius: 'var(--radius-sm)',
-                      marginBottom: '16px',
-                      fontSize: '0.86rem',
-                      borderLeft: '3px solid var(--gold)'
-                    }}
+          <div className="acad-layout" ref={layoutRef}>
+            {/* Left: sticky category sidebar */}
+            <aside className="acad-sidebar">
+              <div className="acad-sidebar-title">Browse by Category</div>
+              <nav className="acad-filters" aria-label="Program categories">
+                {categories.map((c) => (
+                  <button
+                    key={c.id}
+                    className={`acad-filter ${activeTab === c.id ? 'active' : ''}`}
+                    onClick={() => selectCategory(c.id)}
+                    aria-current={activeTab === c.id ? 'true' : undefined}
                   >
-                    <strong>Eligibility:</strong> {p.eligibility}
-                  </div>
+                    <span>{c.label}</span>
+                    <span className="acad-filter-count">{countFor(c.id)}</span>
+                  </button>
+                ))}
+              </nav>
+              <p className="acad-sidebar-note">
+                Showing <strong>{filteredPrograms.length}</strong> {filteredPrograms.length === 1 ? 'program' : 'programs'}.
+                Select a category to filter the list.
+              </p>
+            </aside>
 
-                  <div style={{ marginBottom: '16px' }}>
-                    <span style={{ fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase', color: 'var(--primary)', display: 'block', marginBottom: '8px' }}>
-                      Key Subjects & Syllabus:
-                    </span>
-                    <ul style={{ paddingLeft: '18px', fontSize: '0.88rem', color: 'var(--slate)', lineHeight: '1.6' }}>
-                      {p.curriculum.map((c, i) => (
-                        <li key={i}>{c}</li>
-                      ))}
-                    </ul>
-                  </div>
+            {/* Right: program cards */}
+            <div className="acad-content">
+              {filteredPrograms.map((p) => (
+                <div key={p.id} className="card">
+                  <div className="card-body">
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '14px' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                        <div className="card-icon-box" style={{ margin: 0 }}>
+                          <Icon name={p.icon} size={24} />
+                        </div>
+                        <div>
+                          <h3 className="card-title" style={{ margin: 0, fontSize: '1.25rem' }}>{p.title}</h3>
+                          <span style={{ fontSize: '0.82rem', color: 'var(--muted)' }}>
+                            {p.duration} • <span style={{ color: 'var(--primary-accent)', fontWeight: 600 }}>{p.board}</span>
+                          </span>
+                        </div>
+                      </div>
+                      <span className={`badge ${p.badgeClass}`}>{p.board.split(' ')[0]}</span>
+                    </div>
 
-                  <div style={{ marginBottom: '20px' }}>
-                    <span style={{ fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase', color: 'var(--primary)', display: 'block', marginBottom: '8px' }}>
-                      Special Training & Program Highlights:
-                    </span>
-                    <ul style={{ paddingLeft: '18px', fontSize: '0.88rem', color: 'var(--slate)', lineHeight: '1.6' }}>
-                      {p.highlights.map((h, i) => (
-                        <li key={i}>{h}</li>
-                      ))}
-                    </ul>
-                  </div>
+                    <p className="card-text" style={{ fontSize: '0.94rem', marginBottom: '16px' }}>
+                      {p.overview}
+                    </p>
 
-                  <div className="card-footer" style={{ marginTop: 'auto' }}>
-                    <button className="btn btn-outline-primary" onClick={openApplyModal}>
-                      <Icon name="fileText" size={15} /> Download Syllabus
-                    </button>
-                    <button className="btn btn-primary" onClick={openApplyModal}>
-                      <Icon name="graduationCap" size={15} /> Apply for This Program
-                    </button>
+                    <div
+                      style={{
+                        background: 'var(--light-bg)',
+                        padding: '12px 16px',
+                        borderRadius: 'var(--radius-sm)',
+                        marginBottom: '16px',
+                        fontSize: '0.86rem',
+                        borderLeft: '3px solid var(--gold)'
+                      }}
+                    >
+                      <strong>Eligibility:</strong> {p.eligibility}
+                    </div>
+
+                    <div style={{ marginBottom: '16px' }}>
+                      <span style={{ fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase', color: 'var(--primary)', display: 'block', marginBottom: '8px' }}>
+                        Key Subjects & Syllabus:
+                      </span>
+                      <ul style={{ paddingLeft: '18px', fontSize: '0.88rem', color: 'var(--slate)', lineHeight: '1.6' }}>
+                        {p.curriculum.map((c, i) => (
+                          <li key={i}>{c}</li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    <div style={{ marginBottom: '20px' }}>
+                      <span style={{ fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase', color: 'var(--primary)', display: 'block', marginBottom: '8px' }}>
+                        Special Training & Program Highlights:
+                      </span>
+                      <ul style={{ paddingLeft: '18px', fontSize: '0.88rem', color: 'var(--slate)', lineHeight: '1.6' }}>
+                        {p.highlights.map((h, i) => (
+                          <li key={i}>{h}</li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    <div className="card-footer" style={{ marginTop: 'auto' }}>
+                      <button className="btn btn-outline-primary" onClick={openApplyModal}>
+                        <Icon name="fileText" size={15} /> Download Syllabus
+                      </button>
+                      <button className="btn btn-primary" onClick={openApplyModal}>
+                        <Icon name="graduationCap" size={15} /> Apply for This Program
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>
