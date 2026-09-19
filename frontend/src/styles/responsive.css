@@ -19,7 +19,7 @@ nav.navbar,
 .top-bar,
 main,
 footer,
-.hero-wrapper {
+.hero {
   width: 100%;
   max-width: 100%;
   min-width: 0;
@@ -70,7 +70,7 @@ canvas {
 .card,
 .notice-card,
 .section-header,
-.hero-content,
+.hero-copy,
 .page-banner .container,
 .modal-card {
   max-width: 100%;
@@ -106,7 +106,7 @@ canvas {
   }
 
   .hero-title {
-    font-size: clamp(2.5rem, 5vw, 3.2rem);
+    font-size: clamp(2.8rem, 6vw, 4.2rem);
   }
 
   .section-title {
@@ -182,16 +182,20 @@ canvas {
     margin-left: auto;
   }
 
-  .hero-wrapper {
-    padding: 72px 0 88px;
+  .hero-body {
+    padding: 130px 0 32px;
   }
 
-  .hero-content {
-    max-width: 700px;
+  .hero-stats-inner {
+    grid-template-columns: repeat(2, 1fr);
   }
 
-  .hero-stats-banner {
-    margin-top: -28px;
+  .hero-stat {
+    padding: 22px 12px;
+  }
+
+  .hero-stat:nth-child(3)::before {
+    display: none;
   }
 
   .grid-2 {
@@ -286,48 +290,61 @@ canvas {
     padding-right: 16px;
   }
 
-  .hero-wrapper {
-    padding: 54px 0 76px;
+  .hero-body {
+    padding: 118px 0 24px;
   }
 
-  .hero-badge-row {
-    gap: 8px;
-    margin-bottom: 18px;
+  .hero-eyebrow {
+    font-size: 0.68rem;
+    letter-spacing: 0.16em;
+    gap: 10px;
+    margin-bottom: 20px;
   }
 
-  .hero-badge {
-    font-size: 0.74rem;
-    padding: 5px 10px;
+  .hero-eyebrow::before {
+    width: 28px;
   }
 
   .hero-title {
-    font-size: clamp(2rem, 10vw, 2.65rem);
-    line-height: 1.08;
-    margin-bottom: 16px;
+    font-size: clamp(2.3rem, 11vw, 3rem);
+    line-height: 1.06;
+    margin-bottom: 20px;
   }
 
-  .hero-tagline {
+  .hero-sub {
     font-size: 1rem;
-    margin-bottom: 24px;
+    margin-bottom: 28px;
   }
 
   .hero-actions {
     flex-direction: column;
-    gap: 10px;
-    margin-bottom: 24px;
+    gap: 12px;
   }
 
   .hero-actions .btn {
     width: 100%;
   }
 
-  .hero-stats-banner {
-    gap: 12px;
-    margin-top: -20px;
+  .hero-stats-inner {
+    grid-template-columns: 1fr 1fr;
   }
 
-  .stat-card {
-    padding: 18px 16px;
+  .hero-stat {
+    padding: 18px 10px;
+    gap: 12px;
+  }
+
+  .hero-stat-icon {
+    width: 44px;
+    height: 44px;
+  }
+
+  .hero-stat-num {
+    font-size: 1.5rem;
+  }
+
+  .hero-stat-label {
+    font-size: 0.74rem;
   }
 
   .section {
@@ -446,10 +463,10 @@ canvas {
   }
 
   .hero-title {
-    font-size: 1.85rem;
+    font-size: 2rem;
   }
 
-  .hero-tagline {
+  .hero-sub {
     font-size: 0.94rem;
   }
 }

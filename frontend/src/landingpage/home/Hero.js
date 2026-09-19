@@ -5,74 +5,75 @@ import Icon from '../../Icons';
 function Hero() {
   const { navigateTo, openApplyModal } = useNavigation();
 
+  const stats = [
+    { icon: 'graduationCap', num: '38+', label: 'Years of Academic Heritage' },
+    { icon: 'bookOpen', num: '11K+', label: 'Alumni in Medicine & Engineering' },
+    { icon: 'award', num: '100%', label: 'NEB & CTEVT Board Results' },
+    { icon: 'users', num: '40+', label: 'Expert Faculty Members' },
+  ];
+
   return (
-    <div>
+    <section className="hero">
       <div
-        className="hero-wrapper"
-        style={{
-          backgroundImage: `linear-gradient(135deg, rgba(15, 43, 92, 0.92) 0%, rgba(9, 26, 56, 0.88) 100%), url(${process.env.PUBLIC_URL}/college-banner.png)`
-        }}
-      >
+        className="hero-bg"
+        style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/background.png)` }}
+        role="img"
+        aria-label="Himalayan mountains at golden hour above the Pioneers' Academy campus"
+      />
+      <div className="hero-overlay" />
+
+      <div className="hero-body">
         <div className="container">
-          <div className="hero-content">
-            <div className="hero-badge-row">
-              <span className="hero-badge">
-                <Icon name="sparkles" size={14} color="#f59e0b" /> Estd. 2044 B.S. (1987 A.D.)
-              </span>
-              <span className="hero-badge">
-                <Icon name="shieldCheck" size={14} color="#38bdf8" /> Affiliated to NEB & CTEVT
-              </span>
-              <span className="hero-badge">
-                <Icon name="mapPin" size={14} color="#f43f5e" /> Waling, Syangja, Nepal
-              </span>
-            </div>
+          <div className="hero-copy">
+            <span className="hero-eyebrow">
+              Estd. 2044 B.S. (1987 A.D.) &bull; Waling, Syangja
+            </span>
 
             <h1 className="hero-title">
-              Inspiring Excellence. <br />
-              <span className="highlight">Shaping Future Pioneers.</span>
+              Inspiring Excellence.
+              <br />
+              <span className="gold">Shaping Future</span>
+              <br />
+              Pioneers.
             </h1>
 
-            <p className="hero-tagline">
-              <em>"Pioneers are not born, they are made."</em> Providing quality secondary schooling, +2 Science & Management, CTEVT Technical Diplomas (General Medicine HA & Engineering), and Bachelor's education with state-of-the-art facilities.
+            <p className="hero-sub">
+              <em>"Pioneers are not born, they are made."</em> Quality secondary
+              schooling, +2 Science &amp; Management, CTEVT Technical Diplomas and
+              Bachelor's education &mdash; delivered with state-of-the-art facilities.
             </p>
 
             <div className="hero-actions">
-              <button className="btn btn-secondary" onClick={openApplyModal}>
-                <Icon name="graduationCap" size={18} /> Apply for Admission
+              <button className="btn btn-gold" onClick={openApplyModal}>
+                Apply for Admission
+                <Icon name="arrowRight" size={18} />
               </button>
-              <button className="btn btn-outline-white" onClick={() => navigateTo('academic')}>
+              <button className="btn btn-ghost" onClick={() => navigateTo('academic')}>
                 <Icon name="bookOpen" size={18} /> Explore Programs
-              </button>
-              <button className="btn btn-outline-white" onClick={() => navigateTo('campus')}>
-                <Icon name="building" size={18} /> Campus Life
               </button>
             </div>
           </div>
         </div>
       </div>
 
-      {/* 4 Stat Highlights */}
-      <div className="container">
-        <div className="hero-stats-banner">
-          <div className="stat-card">
-            <div className="stat-number">38+</div>
-            <div className="stat-label">Years of Academic Heritage (Estd. 2044 B.S.)</div>
-          </div>
-          <div className="stat-card">
-            <div className="stat-number">11K+</div>
-            <div className="stat-label">Alumni in Medicine, Engineering & Public Service</div>
-          </div>
-          <div className="stat-card">
-            <div className="stat-number">100%</div>
-            <div className="stat-label">Exemplary NEB & CTEVT Board Examination Results</div>
-          </div>
-          <div className="stat-card">
-            <div className="stat-number">40+</div>
-            <div className="stat-label">Expert Faculty Members & Lab Instructors</div>
+      <div className="hero-stats">
+        <div className="container">
+          <div className="hero-stats-inner">
+            {stats.map((s) => (
+              <div className="hero-stat" key={s.num}>
+                <span className="hero-stat-icon">
+                  <Icon name={s.icon} size={26} color="#e8c874" />
+                </span>
+                <div className="hero-stat-text">
+                  <div className="hero-stat-num">{s.num}</div>
+                  <div className="hero-stat-label">{s.label}</div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 

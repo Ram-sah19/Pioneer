@@ -1,11 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigation } from './navigation';
 import Icon from './Icons';
 
 function Navbar() {
   const { currentPage, navigateTo } = useNavigation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const mobileMenuId = 'primary-navigation';
+
+  const isHome = currentPage === 'home';
+  const overlay = isHome && !scrolled;
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   const navItems = [
     { id: 'home', label: 'Home' },
@@ -29,7 +40,8 @@ function Navbar() {
 
   return (
     <>
-      {/* Top Announcement Bar - scrolls away naturally */}
+      {/* Top Announcement Bar - hidden on home so the navbar floats over the hero */}
+      {!isHome && (
       <div className="top-bar">
         <div className="container">
           <div className="top-bar-inner">
@@ -68,9 +80,13 @@ function Navbar() {
           </div>
         </div>
       </div>
+      )}
 
       {/* Main Navbar */}
-      <nav className="navbar" aria-label="Primary navigation">
+      <nav
+        className={`navbar ${overlay ? 'navbar--overlay' : ''} ${isHome && scrolled ? 'navbar--scrolled' : ''}`}
+        aria-label="Primary navigation"
+      >
         <div className="container navbar-container">
           <div className="navbar-inner">
             {/* Brand Logo & Name */}

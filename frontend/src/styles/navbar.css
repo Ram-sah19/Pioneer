@@ -295,3 +295,96 @@
     transform: translateY(0);
   }
 }
+
+/* Home hero: transparent floating navbar, dark glass once scrolled */
+.navbar--overlay,
+.navbar--scrolled {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+.navbar--overlay {
+  background: transparent;
+  box-shadow: none;
+}
+
+.navbar--scrolled {
+  background: rgba(8, 18, 38, 0.82);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 8px 30px rgba(2, 6, 23, 0.35);
+}
+
+.navbar--overlay::after,
+.navbar--scrolled::after {
+  background: #e8c874;
+}
+
+.navbar--overlay .brand-title,
+.navbar--scrolled .brand-title {
+  color: #ffffff;
+}
+
+.navbar--overlay .brand-container:hover .brand-title,
+.navbar--overlay .brand-container:focus-visible .brand-title,
+.navbar--scrolled .brand-container:hover .brand-title,
+.navbar--scrolled .brand-container:focus-visible .brand-title {
+  color: #e8c874;
+}
+
+.navbar--overlay .brand-subtitle,
+.navbar--scrolled .brand-subtitle {
+  color: #e8c874;
+}
+
+.navbar--overlay .brand-motto,
+.navbar--scrolled .brand-motto {
+  color: #cbd5e1;
+}
+
+.navbar--overlay .brand-logo-img,
+.navbar--scrolled .brand-logo-img {
+  border-color: rgba(232, 200, 116, 0.7);
+}
+
+.navbar--overlay .nav-link,
+.navbar--scrolled .nav-link {
+  color: rgba(255, 255, 255, 0.82);
+  background: transparent;
+}
+
+.navbar--overlay .nav-link::before,
+.navbar--scrolled .nav-link::before {
+  display: none;
+}
+
+.navbar--overlay .nav-link:hover,
+.navbar--overlay .nav-link.active,
+.navbar--scrolled .nav-link:hover,
+.navbar--scrolled .nav-link.active {
+  color: #ffffff;
+  background: transparent;
+}
+
+.navbar--overlay .nav-link.active::after,
+.navbar--overlay .nav-link:hover::after,
+.navbar--scrolled .nav-link.active::after,
+.navbar--scrolled .nav-link:hover::after {
+  height: 2px;
+  bottom: -4px;
+  background: #e8c874;
+  transform: scaleX(1);
+}
+
+.navbar--overlay .mobile-toggle,
+.navbar--scrolled .mobile-toggle {
+  color: #ffffff;
+}
+
+.navbar--overlay .nav-menu.open,
+.navbar--scrolled .nav-menu.open {
+  background: rgba(8, 18, 38, 0.97);
+  border-bottom-color: rgba(232, 200, 116, 0.35);
+}

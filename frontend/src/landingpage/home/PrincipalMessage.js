@@ -26,7 +26,7 @@ function PrincipalMessage() {
               <Icon name="award" size={14} /> From the Principal
             </span>
             <h2>What Our Principal Says</h2>
-            <div className="principal-message-quote-mark">“</div>
+            <div className="principal-message-quote-mark"></div>
             <blockquote>
               At Pioneers, our mission has remained steadfast for over 38 years:
               to provide transformative education rooted in ethics, scientific
