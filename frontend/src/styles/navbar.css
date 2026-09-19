@@ -1,0 +1,179 @@
+/* Top Announcement Bar */
+.top-bar {
+  background: var(--primary-dark);
+  color: #cbd5e1;
+  font-size: 0.84rem;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.top-bar-inner,
+.top-bar-left,
+.top-bar-right {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.top-bar-inner {
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.top-bar-left,
+.top-bar-right {
+  gap: 18px;
+}
+
+.top-bar-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #e2e8f0;
+}
+
+.top-bar-item a:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+.top-pill {
+  background: rgba(239, 68, 68, 0.25);
+  color: #fca5a5;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+/* Main Navbar */
+.navbar {
+  background: #ffffff;
+  box-shadow: var(--shadow);
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  transition: var(--transition);
+}
+
+.navbar > .navbar-container {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding-left: 32px;
+  padding-right: 32px;
+}
+
+.navbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  min-height: 80px;
+  gap: 24px;
+}
+
+.brand-container {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  cursor: pointer;
+  flex-shrink: 0;
+  margin-left: 0;
+  margin-right: 0;
+  order: 0;
+  text-align: left;
+}
+
+.brand-logo-img {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--primary);
+  box-shadow: var(--shadow-sm);
+  background: #ffffff;
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--primary);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.brand-subtitle {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--secondary-crimson);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.brand-motto {
+  font-size: 0.74rem;
+  font-style: italic;
+  color: var(--muted);
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+  list-style: none;
+  margin-left: auto;
+  order: 1;
+}
+
+.nav-link {
+  padding: 8px 12px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--slate);
+  border-radius: var(--radius-sm);
+  position: relative;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--primary);
+  background: var(--primary-light);
+}
+
+.nav-link.active {
+  font-weight: 700;
+}
+
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 12px;
+  right: 12px;
+  height: 3px;
+  background: var(--primary-accent);
+  border-radius: 2px;
+}
+
+.mobile-toggle {
+  display: none;
+  padding: 8px;
+  color: var(--primary);
+  border-radius: var(--radius-sm);
+}
+
+.mobile-toggle:hover,
+.mobile-toggle:focus-visible {
+  background: var(--primary-light);
+  outline: none;
+}

@@ -1,0 +1,7 @@
+/*
+ * Global stylesheet layer.
+ *
+ * Shared design tokens, reset rules, typography, containers, buttons, and
+ * reusable layout utilities currently remain in components.css to preserve
+ * the existing cascade during this first CSS-only refactor.
+ */

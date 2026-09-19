@@ -9,14 +9,14 @@ function Navbar() {
 
   const navItems = [
     { id: 'home', label: 'Home' },
-    { id: 'about', label: 'About Us' },
+    { id: 'about', label: 'About' },
     { id: 'academic', label: 'Academics' },
     { id: 'admission', label: 'Admissions' },
-    { id: 'campus', label: 'Campus Life' },
+    { id: 'campus', label: 'Campus' },
     { id: 'facilities', label: 'Facilities' },
     { id: 'halloffame', label: 'Hall of Fame' },
     { id: 'newsevent', label: 'News & Events' },
-    { id: 'contact', label: 'Contact Us' },
+    { id: 'contact', label: 'Contact' },
   ];
 
   const handleNavClick = (pageId) => {
