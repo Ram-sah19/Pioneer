@@ -16,7 +16,7 @@ function Clubspage() {
       name: "Cultural & Fine Arts Club",
       tag: "Heritage & Arts",
       desc: "The heartbeat of campus celebrations. The club organises Saraswati Puja, Dashain, Tihar Deusi-Bhailo and Holi, and runs regular music, tabla, folk and modern dance, and drama workshops that keep Nepali arts alive on campus.",
-      image: "/college-banner.png",
+      image: "/college-banner.webp",
     },
     {
       name: "Literary & Debate Club",
@@ -28,7 +28,7 @@ function Clubspage() {
       name: "Sports & Athletics Club",
       tag: "Fitness & Games",
       desc: "From the district-champion volleyball and girls football squads to basketball, badminton, table tennis and track events, the club trains students year-round and hosts the flagship Annual Inter-Faculty Sports Week every Mangsir.",
-      image: "/college-banner.png",
+      image: "/college-banner.webp",
     },
     {
       name: "Youth Red Cross & Health Society",
@@ -40,7 +40,7 @@ function Clubspage() {
       name: "Environment & Social Service Club",
       tag: "Green Campus",
       desc: "Dedicated to a cleaner, greener Syangja through tree-plantation drives, campus cleanliness weeks, waste segregation, water-conservation projects and voluntary visits to local old-age homes and schools.",
-      image: "/college-banner.png",
+      image: "/college-banner.webp",
     },
     {
       name: "IT & Coding Club",
@@ -52,7 +52,7 @@ function Clubspage() {
       name: "Photography & Media Club",
       tag: "Campus Media",
       desc: "The storytellers of Pioneers Academy. The club documents every event through photography and short films, designs the annual yearbook, and manages the academy social-media pages that connect 11K+ followers to campus life.",
-      image: "/college-banner.png",
+      image: "/college-banner.webp",
     },
   ];
 
@@ -107,7 +107,7 @@ function Clubspage() {
                       alt={club.name}
                       onError={(e) => {
                         e.target.onerror = null;
-                        e.target.src = "/college-banner.png";
+                        e.target.src = "/college-banner.webp";
                       }}
                     />
                     <span className="club-tag">{club.tag}</span>

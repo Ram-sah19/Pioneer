@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { NavigationProvider, useNavigation } from './navigation';
 import Navbar from './Navbar';
 import Footer from './Footer';
@@ -19,6 +19,10 @@ import Contactpage from './landingpage/contact/Contactpage';
 
 function AppContent() {
   const { currentPage } = useNavigation();
+
+  useEffect(() => {
+    document.getElementById('initial-splash')?.classList.add('done');
+  }, []);
 
   const renderPage = () => {
     switch (currentPage) {

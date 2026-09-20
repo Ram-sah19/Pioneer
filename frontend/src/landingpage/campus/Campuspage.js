@@ -113,7 +113,7 @@ function Campuspage() {
                   style={{ width: '100%', height: '360px', objectFit: 'cover' }}
                   onError={(e) => {
                     e.target.onerror = null;
-                    e.target.src = '/college-banner.png';
+                    e.target.src = '/college-banner.webp';
                   }}
                 />
                 <div style={{ padding: '16px 20px', background: '#ffffff', borderTop: '3px solid var(--primary-accent)' }}>

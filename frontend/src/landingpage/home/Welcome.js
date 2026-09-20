@@ -26,7 +26,7 @@ function Welcome() {
                 style={{ width: '100%', height: '360px', objectFit: 'cover' }}
                 onError={(e) => {
                   e.target.onerror = null;
-                  e.target.src = '/college-banner.png';
+                  e.target.src = '/college-banner.webp';
                 }}
               />
               <div

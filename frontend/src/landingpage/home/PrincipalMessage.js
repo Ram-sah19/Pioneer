@@ -12,7 +12,7 @@ function PrincipalMessage() {
               alt="Students gathered at Pioneers' Higher Education Academy"
               onError={(e) => {
                 e.target.onerror = null;
-                e.target.src = '/college-banner.png';
+                e.target.src = '/college-banner.webp';
               }}
             />
             <div className="principal-message-photo-caption">

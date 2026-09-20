@@ -19,7 +19,7 @@ export const CampusGallery = () => {
       category: 'labs',
       title: 'Modern Science & Practical Laboratory',
       desc: 'Students conducting chemical reactions, titrations, and microscopic analysis in the chemistry wing.',
-      image: '/college-banner.png',
+      image: '/college-banner.webp',
       tag: 'Science Laboratories'
     },
     {
@@ -35,7 +35,7 @@ export const CampusGallery = () => {
       category: 'sports',
       title: 'Annual Inter-Faculty Sports Week',
       desc: 'Thrilling district-level volleyball tournament in our central sports arena.',
-      image: '/college-banner.png',
+      image: '/college-banner.webp',
       tag: 'Sports & Athletics'
     },
     {
@@ -51,7 +51,7 @@ export const CampusGallery = () => {
       category: 'labs',
       title: 'Hi-Tech Computer & IT Center',
       desc: 'Equipped with fiber broadband, coding terminals, and architectural drafting software.',
-      image: '/college-banner.png',
+      image: '/college-banner.webp',
       tag: 'Digital IT'
     }
   ];
@@ -119,7 +119,7 @@ export const CampusGallery = () => {
                 onMouseOut={(e) => (e.currentTarget.style.transform = 'scale(1)')}
                 onError={(e) => {
                   e.target.onerror = null;
-                  e.target.src = '/college-banner.png';
+                  e.target.src = '/college-banner.webp';
                 }}
               />
               <span

@@ -16,7 +16,7 @@ function Hero() {
     <section className="hero">
       <div
         className="hero-bg"
-        style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/background.png)` }}
+        style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/background.webp)` }}
         role="img"
         aria-label="Himalayan mountains at golden hour above the Pioneers' Academy campus"
       />

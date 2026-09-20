@@ -20,7 +20,7 @@ function Hallpage() {
       title: 'Board Topper Award Presentation',
       caption: 'NEB Class 12 Science and Management toppers receiving merit shields and scholarship certificates.',
       tag: 'Academic Merit',
-      image: '/college-banner.png'
+      image: '/college-banner.webp'
     },
     {
       id: 3,
@@ -34,7 +34,7 @@ function Hallpage() {
       title: 'Alumni Homecoming Meet',
       caption: 'Doctors, engineers and public servants returning to campus to mentor current students.',
       tag: 'Alumni Network',
-      image: '/college-banner.png'
+      image: '/college-banner.webp'
     },
     {
       id: 5,
@@ -48,7 +48,7 @@ function Hallpage() {
       title: 'Science Exhibition Winners',
       caption: 'Student innovators recognised for winning the district-level science and robotics exhibition.',
       tag: 'Innovation',
-      image: '/college-banner.png'
+      image: '/college-banner.webp'
     }
   ];
 
@@ -71,7 +71,7 @@ function Hallpage() {
       badge: 'GPA 3.82',
       desc: 'Ranked 1st among all management candidates in Syangja district with outstanding distinction in Principles of Accounting and Economics.',
       icon: 'award',
-      image: '/college-banner.png'
+      image: '/college-banner.webp'
     },
     {
       name: 'Pooja Karki',
@@ -91,7 +91,7 @@ function Hallpage() {
       badge: 'CEE Medical Ranker',
       desc: 'Completed +2 Science at Pioneers Academy, cracked the common medical entrance examination, and currently serves as a physician at a leading regional teaching hospital.',
       icon: 'shieldCheck',
-      image: '/college-banner.png'
+      image: '/college-banner.webp'
     },
     {
       name: 'Er. Sandeep Gurung',
@@ -111,7 +111,7 @@ function Hallpage() {
       badge: 'Community Health Leader',
       desc: 'Graduated from our CTEVT General Medicine program and currently leads clinical operations at a primary health care center in Gandaki Province.',
       icon: 'heart',
-      image: '/college-banner.png'
+      image: '/college-banner.webp'
     },
     {
       name: 'Pioneers Senior Volleyball Team',
@@ -131,7 +131,7 @@ function Hallpage() {
       badge: 'ICAN Ranker',
       desc: 'Credited the solid accounting and financial fundamentals learned at Pioneers Management faculty for his exceptional success in ICAN examinations.',
       icon: 'sparkles',
-      image: '/college-banner.png'
+      image: '/college-banner.webp'
     }
   ];
 
@@ -152,7 +152,7 @@ function Hallpage() {
       grade: 'GPA 3.82',
       tag: 'NEB Board 2081',
       detail: 'Ranked 1st among all management candidates in the district with distinction in Accounting.',
-      image: '/college-banner.png'
+      image: '/college-banner.webp'
     },
     {
       id: 3,
@@ -170,7 +170,7 @@ function Hallpage() {
       grade: 'CEE Qualifier',
       tag: 'Alumni 2073',
       detail: 'Cracked the national medical entrance and now serves as a physician at a teaching hospital.',
-      image: '/college-banner.png'
+      image: '/college-banner.webp'
     },
     {
       id: 5,
@@ -232,7 +232,7 @@ function Hallpage() {
                 className="ach-hero-img"
                 src={spotlight[slide].image}
                 alt={spotlight[slide].name}
-                onError={(e) => { e.target.onerror = null; e.target.src = '/college-banner.png'; }}
+                onError={(e) => { e.target.onerror = null; e.target.src = '/college-banner.webp'; }}
               />
               <div className="ach-hero-overlay">
                 <span className="badge badge-amber">{spotlight[slide].tag}</span>
@@ -331,7 +331,7 @@ function Hallpage() {
                     src={item.image}
                     alt={item.name}
                     style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                    onError={(e) => { e.target.onerror = null; e.target.src = '/college-banner.png'; }}
+                    onError={(e) => { e.target.onerror = null; e.target.src = '/college-banner.webp'; }}
                   />
                   <span className="badge badge-amber" style={{ position: 'absolute', top: '12px', right: '12px' }}>
                     {item.badge}
@@ -443,7 +443,7 @@ function Hallpage() {
                     onMouseOut={(e) => (e.currentTarget.style.transform = 'scale(1)')}
                     onError={(e) => {
                       e.target.onerror = null;
-                      e.target.src = '/college-banner.png';
+                      e.target.src = '/college-banner.webp';
                     }}
                   />
                   <span

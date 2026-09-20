@@ -13,12 +13,12 @@
     Cache-Control = "public, max-age=31536000, immutable"
 
 [[headers]]
-  for = "/background.png"
+  for = "/background.webp"
   [headers.values]
     Cache-Control = "public, max-age=604800"
 
 [[headers]]
-  for = "/college-banner.png"
+  for = "/college-banner.webp"
   [headers.values]
     Cache-Control = "public, max-age=604800"
 

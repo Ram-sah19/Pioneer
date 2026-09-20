@@ -18,7 +18,7 @@ function Footer() {
                 style={{ width: '50px', height: '50px', borderRadius: '50%', background: '#fff', padding: '2px' }}
                 onError={(e) => {
                   e.target.onerror = null;
-                  e.target.src = '/college-banner.png';
+                  e.target.src = '/college-banner.webp';
                 }}
               />
               <div>

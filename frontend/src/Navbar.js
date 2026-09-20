@@ -101,7 +101,7 @@ function Navbar() {
                 className="brand-logo-img"
                 onError={(e) => {
                   e.target.onerror = null;
-                  e.target.src = '/college-banner.png';
+                  e.target.src = '/college-banner.webp';
                   e.target.style.width = '60px';
                   e.target.style.height = '60px';
                   e.target.style.objectFit = 'cover';

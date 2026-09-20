@@ -12,22 +12,59 @@
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/college-logo.png" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
 
-    <!-- Google Fonts: Average (site-wide) + Plus Jakarta Sans (fallback) -->
+    <!-- The hero photo is applied by React, so the browser cannot discover it in the HTML.
+         Preload it and paint the page navy so the pre-mount window matches the hero. -->
+    <link
+      rel="preload"
+      as="image"
+      href="%PUBLIC_URL%/background.webp"
+      fetchpriority="high"
+    />
+
+    <!-- Google Fonts: Average (site-wide) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap"
-      rel="stylesheet"
-    />
     <link
       href="https://fonts.googleapis.com/css2?family=Average&display=swap"
       rel="stylesheet"
     />
 
     <title>Pioneers' Higher Education Academy | Waling, Syangja (Estd. 2044 B.S.)</title>
+    <style>
+      html,
+      body,
+      #root {
+        min-height: 100%;
+      }
+
+      html {
+        background-color: #091a38;
+      }
+
+      /* Covers the pre-render window (HTML → CSS → JS → React mount) with the hero's
+         navy so the first paint is not a blank white page. */
+      #initial-splash {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        background: linear-gradient(120deg, #091a38 0%, #12294f 55%, #2c3a55 100%);
+      }
+
+      #initial-splash.done {
+        animation: splash-out 0.4s ease forwards;
+      }
+
+      @keyframes splash-out {
+        to {
+          opacity: 0;
+          visibility: hidden;
+        }
+      }
+    </style>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="initial-splash" aria-hidden="true"></div>
     <div id="root"></div>
   </body>
 </html>
