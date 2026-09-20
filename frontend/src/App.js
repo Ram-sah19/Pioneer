@@ -21,7 +21,10 @@ function AppContent() {
   const { currentPage } = useNavigation();
 
   useEffect(() => {
-    document.getElementById('initial-splash')?.classList.add('done');
+    const splash = document.getElementById('initial-splash');
+    if (!splash) return;
+    splash.classList.add('done');
+    splash.setAttribute('aria-hidden', 'true');
   }, []);
 
   const renderPage = () => {
