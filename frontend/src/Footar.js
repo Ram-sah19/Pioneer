@@ -43,7 +43,7 @@ function Footer() {
                   display: 'inline-flex',
                   alignItems: 'center',
                   gap: '8px',
-                  background: '#1877f2',
+                  background: '#0177bc',
                   color: '#ffffff',
                   padding: '7px 14px',
                   borderRadius: '6px',

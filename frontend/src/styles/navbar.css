@@ -262,40 +262,6 @@
   }
 }
 
-@media (max-width: 768px) {
-  .navbar .nav-menu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    display: flex;
-    max-height: 0;
-    overflow: hidden;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-8px);
-    transition: max-height 0.3s ease, opacity 0.25s ease, transform 0.25s ease, visibility 0.3s ease;
-  }
-
-  .navbar .nav-menu.open {
-    max-height: 80vh;
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-  }
-
-  .navbar .nav-menu .nav-link,
-  .navbar .nav-menu .btn {
-    transform: translateY(-4px);
-    transition: transform 0.25s ease, color 0.25s ease, background-color 0.25s ease;
-  }
-
-  .navbar .nav-menu.open .nav-link,
-  .navbar .nav-menu.open .btn {
-    transform: translateY(0);
-  }
-}
-
 /* Home hero: transparent floating navbar, dark glass once scrolled */
 .navbar--overlay,
 .navbar--scrolled {
@@ -383,8 +349,22 @@
   color: #ffffff;
 }
 
+.navbar--overlay .nav-menu,
+.navbar--scrolled .nav-menu {
+  /* background: rgba(8, 18, 38, 0.98); */
+  border-bottom-color: rgba(232, 200, 116, 0.35);
+  transition:
+    opacity 0.28s ease,
+    visibility 0s linear 0.38s,
+    transform 0.38s cubic-bezier(0.22, 1, 0.36, 1),
+    clip-path 0.38s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
 .navbar--overlay .nav-menu.open,
 .navbar--scrolled .nav-menu.open {
-  background: rgba(8, 18, 38, 0.97);
+  background: rgba(8, 18, 38, 0.98);
   border-bottom-color: rgba(232, 200, 116, 0.35);
 }

@@ -119,8 +119,8 @@ function Navbar() {
               id={mobileMenuId}
               className={`nav-menu ${isMobileMenuOpen ? 'open' : ''}`}
             >
-              {navItems.map((item) => (
-                <li key={item.id}>
+              {navItems.map((item, index) => (
+                <li key={item.id} style={{ '--i': index }}>
                   <button
                     className={`nav-link ${currentPage === item.id ? 'active' : ''}`}
                     onClick={(event) => handleNavClick(item.id, event)}

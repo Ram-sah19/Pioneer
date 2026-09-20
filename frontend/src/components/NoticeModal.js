@@ -1,9 +1,11 @@
 import React from 'react';
 import { useNavigation } from '../navigation';
+import useLockBodyScroll from '../hooks/useLockBodyScroll';
 import Icon from '../Icons';
 
 export const NoticeModal = () => {
   const { selectedNotice, closeNoticeModal } = useNavigation();
+  useLockBodyScroll(Boolean(selectedNotice));
 
   if (!selectedNotice) return null;
 

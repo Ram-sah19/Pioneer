@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigation } from '../navigation';
+import useLockBodyScroll from '../hooks/useLockBodyScroll';
 import Icon from '../Icons';
 
 export const ApplyModal = () => {
   const { isApplyModalOpen, closeApplyModal } = useNavigation();
+  useLockBodyScroll(isApplyModalOpen);
   const [formData, setFormData] = useState({
     fullName: '',
     phone: '',

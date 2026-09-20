@@ -695,6 +695,10 @@ textarea.form-control {
 }
 
 /* Modal */
+body.no-scroll {
+  overscroll-behavior: none;
+}
+
 .modal-overlay {
   position: fixed;
   inset: 0;
