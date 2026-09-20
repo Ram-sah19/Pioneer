@@ -70,8 +70,10 @@
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
+/* :focus-within also fires on a plain mouse click, which left the line latched after
+   using the language switch; :focus-visible keeps it for keyboard navigation only */
 .navbar:hover::after,
-.navbar:focus-within::after {
+.navbar:has(:focus-visible)::after {
   opacity: 1;
   transform: scaleX(1);
 }
@@ -184,10 +186,10 @@
   overflow: hidden;
 }
 
-.nav-link:hover,
 .nav-link.active {
   color: var(--primary);
   background: var(--primary-light);
+  font-weight: 700;
 }
 
 .nav-link::before {
@@ -199,13 +201,8 @@
   transition: opacity 0.25s ease;
 }
 
-.nav-link:hover::before,
 .nav-link.active::before {
   opacity: 1;
-}
-
-.nav-link.active {
-  font-weight: 700;
 }
 
 .nav-link.active::after {
@@ -217,14 +214,21 @@
   height: 3px;
   background: var(--primary-accent);
   border-radius: 2px;
-  transform: scaleX(0.35);
+  transform: scaleX(1);
   transform-origin: center;
   transition: transform 0.25s ease;
 }
 
-.nav-link:hover::after,
-.nav-link.active::after {
-  transform: scaleX(1);
+/* Touch screens latch :hover after a tap, so pointer-only flourishes stay behind this query */
+@media (hover: hover) {
+  .nav-link:hover {
+    color: var(--primary);
+    background: var(--primary-light);
+  }
+
+  .nav-link:hover::before {
+    opacity: 1;
+  }
 }
 
 .mobile-toggle {
@@ -235,11 +239,85 @@
   transition: transform 0.25s ease, background-color 0.25s ease;
 }
 
-.mobile-toggle:hover,
 .mobile-toggle:focus-visible {
   background: var(--primary-light);
   outline: none;
   transform: rotate(4deg);
+}
+
+@media (hover: hover) {
+  .mobile-toggle:hover {
+    background: var(--primary-light);
+    outline: none;
+    transform: rotate(4deg);
+  }
+}
+
+/* Language switch (EN | नेपाली) */
+.lang-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: #ffffff;
+  color: var(--muted);
+  font-family: 'Mukta', 'Noto Sans Devanagari', var(--font-family);
+  font-size: 0.78rem;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.lang-switch:focus-visible {
+  border-color: var(--primary-accent);
+  outline: none;
+}
+
+@media (hover: hover) {
+  .lang-switch:hover {
+    border-color: var(--primary-accent);
+    outline: none;
+  }
+}
+
+.lang-option {
+  opacity: 0.5;
+  transition: var(--transition);
+}
+
+.lang-option.active {
+  opacity: 1;
+  color: var(--primary);
+}
+
+.lang-divider {
+  opacity: 0.35;
+}
+
+.navbar--overlay .lang-switch,
+.navbar--scrolled .lang-switch {
+  background: transparent;
+  border-color: rgba(232, 200, 116, 0.45);
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.navbar--overlay .lang-option.active,
+.navbar--scrolled .lang-option.active {
+  color: #e8c874;
+}
+
+.navbar--overlay .lang-switch:hover,
+.navbar--scrolled .lang-switch:hover {
+  border-color: #e8c874;
+}
+
+/* Average has no Devanagari coverage, so the stack in --font-family falls through to Mukta per glyph */
+[lang='ne'] {
+  letter-spacing: 0;
 }
 
 .navbar .btn-secondary {

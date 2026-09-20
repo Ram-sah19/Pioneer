@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
 import { NavigationProvider, useNavigation } from './navigation';
+import { LanguageProvider } from './i18n/LanguageContext';
+import AutoTranslate from './i18n/AutoTranslate';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import ApplyModal from './components/ApplyModal';
@@ -66,9 +68,13 @@ function AppContent() {
 
 function App() {
   return (
-    <NavigationProvider>
-      <AppContent />
-    </NavigationProvider>
+    <LanguageProvider>
+      <NavigationProvider>
+        <AutoTranslate>
+          <AppContent />
+        </AutoTranslate>
+      </NavigationProvider>
+    </LanguageProvider>
   );
 }
 

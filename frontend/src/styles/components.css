@@ -37,7 +37,7 @@
   --shadow-md: 0 10px 25px -5px rgba(15, 43, 92, 0.1), 0 8px 10px -6px rgba(15, 43, 92, 0.08);
   --shadow-lg: 0 20px 35px -10px rgba(15, 43, 92, 0.16);
   --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-  --font-family: 'Average', Georgia, 'Times New Roman', serif;
+  --font-family: 'Average', 'Mukta', Georgia, 'Times New Roman', serif;
 }
 
 * {
@@ -258,7 +258,7 @@ button {
 }
 
 .hero-title {
-  font-family: 'Average', Georgia, 'Times New Roman', serif;
+  font-family: 'Average', 'Mukta', Georgia, 'Times New Roman', serif;
   font-weight: 400;
   font-size: clamp(3rem, 7vw, 5.6rem);
   line-height: 1.04;

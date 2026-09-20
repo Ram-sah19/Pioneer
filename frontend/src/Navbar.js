@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigation } from './navigation';
+import { useLanguage } from './i18n/LanguageContext';
 import Icon from './Icons';
 
 function Navbar() {
   const { currentPage, navigateTo } = useNavigation();
+  const { lang, toggleLang } = useLanguage();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const mobileMenuId = 'primary-navigation';
@@ -86,6 +88,7 @@ function Navbar() {
       <nav
         className={`navbar ${overlay ? 'navbar--overlay' : ''} ${isHome && scrolled ? 'navbar--scrolled' : ''}`}
         aria-label="Primary navigation"
+        data-i18n="off"
       >
         <div className="container navbar-container">
           <div className="navbar-inner">
@@ -130,6 +133,19 @@ function Navbar() {
                 </li>
               ))}
             </ul>
+
+            {/* Language Switch: English / Nepali */}
+            <button
+              className="lang-switch"
+              onClick={toggleLang}
+              lang={lang === 'en' ? 'ne' : 'en'}
+              aria-label="Switch language"
+              title="Switch language"
+            >
+              <span className={lang === 'en' ? 'lang-option active' : 'lang-option'}>EN</span>
+              <span className="lang-divider" aria-hidden="true">|</span>
+              <span className={lang === 'ne' ? 'lang-option active' : 'lang-option'}>नेपाली</span>
+            </button>
 
             {/* Mobile Menu Toggle Button */}
             <button

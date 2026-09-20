@@ -13,7 +13,7 @@ function Hero() {
   ];
 
   return (
-    <section className="hero">
+    <section className="hero" data-i18n="off">
       <div
         className="hero-bg"
         style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/background.webp)` }}
